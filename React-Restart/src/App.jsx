@@ -2,23 +2,44 @@ import { useState, useEffect } from "react";
 
 function App() {
   //conditional rendaring
-  let counterVisible = true;
+  
+  const [counterVisible, setCounterVisible] = useState(false);
+
+  useEffect(function () {
+    setInterval(function () {
+      setCounterVisible(
+        c => !c
+      )
+    }, 5000)
+  },[] )
   return <div>
-   {counterVisible ? <Counter></Counter> : null}
+    {counterVisible ? <Counter></Counter> : null}
   </div>
 
 }
 
 
 
+
+
 function Counter() {
   const [count, setCount] = useState(0);
 
+  //clearInterval
   useEffect(function () {
-    setInterval(function () {
+    console.log("hi there")
+   let clock = setInterval(function () {
+      console.log("From inside the interval");
       setCount(count + 1)
     }, 1000)
-  },[count])
+    return function (){
+      console.log("unmount")
+      clearInterval(clock);
+    }
+     
+  }, [])
+
+ 
 
   console.log("render");
 
