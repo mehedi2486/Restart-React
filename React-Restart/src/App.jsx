@@ -1,45 +1,47 @@
-// import { useState } from "react";
 import { useState } from "react";
-import PostComponent from "./Post";
 
-function App() {
+function App(){
+  const [count, setCount] = useState(0);
+  function Increment(){
+  setCount(count + 1)
+}
 
-  const[posts, setPosts] = useState([]); 
+  function Decrement(){
+  if(count > 0){
+    setCount(count -1)
+  }
+}
 
+  function Restart(){
+  setCount(0)
+}
 
+let message;
 
+if(count <= 5){
+  message = "LOW"
+}else if(count <=10){
+  message = "Medium"
+}else {
+  message = "High"
+}
 
-  const postComponent = posts.map(post => <PostComponent 
-    name = {post.name}
-    subtitle = {post.subtitle}
-    time = {post.time}
-    image={post.image}
-    description={post.description}
-    />)
-
-  function addPost(){
-    setPosts([...posts,{
-    name:"raju",
-    subtitle:"10000 followers",
-    time : " 30m ago",
-    image : "https://appx-wsb-gcp-mcdn.akamai.net.in/subject/2023-01-17-0.17044360120951185.jpg",
-    description:"What to know how to win big? Check out how these folks won 5000 in bounties"
-  }])
-   
-
-
-  } 
 
   return (
-    <div style={{ background: "#dfe6e9", height: "100vh" }}>
-      <button onClick={addPost}>Add Post</button>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div>
-            {postComponent}
-        </div>
-      </div>
-    </div>
-  );
+  <div>
+    <button onClick={Increment}>Increase</button>
+    <button onClick={Decrement}>Decrease</button>
+    <button onClick={Restart}>Reset</button>
+    <br />
+    <h1>{count}</h1>
+    <p>Status: {message}</p>
+
+  </div>
+  )
+
 }
+
+
+
 
 export default App;
