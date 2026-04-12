@@ -1,42 +1,48 @@
-import { useState } from "react";
-
-function App(){
+import { useEffect, useState } from "react";
+//Build a React component that behaves like an auto-incrementing counter with controls.
+function App() {
   const [count, setCount] = useState(0);
-  function Increment(){
-  setCount(count + 1)
-}
+  const [isRunnign, setIsRunning] = useState(false);
 
-  function Decrement(){
-  if(count > 0){
-    setCount(count -1)
+  
+ useEffect ( ()=> {
+  let interval;
+  if(isRunnign){
+    interval = setInterval(() => {
+      setCount(c => c + 1)
+    },1000)
   }
-}
+  return () =>{
+    clearInterval(interval)
+  }
 
-  function Restart(){
-  setCount(0)
-}
+ },[isRunnign])
+  
 
-let message;
+  function start(){
+    setIsRunning(true)
+  }
+  function stop(){
+    setIsRunning(false)
+  }
 
-if(count <= 5){
-  message = "LOW"
-}else if(count <=10){
-  message = "Medium"
-}else {
-  message = "High"
-}
+  function reset(){
+    setIsRunning(false);
+    setCount(0);
+  }
+
+
+
 
 
   return (
-  <div>
-    <button onClick={Increment}>Increase</button>
-    <button onClick={Decrement}>Decrease</button>
-    <button onClick={Restart}>Reset</button>
-    <br />
-    <h1>{count}</h1>
-    <p>Status: {message}</p>
-
-  </div>
+    <div>
+      <button onClick = {start}>Start</button>
+      <button onClick = {stop}>Stop</button>
+      <button onClick={reset}>Reset</button>
+      <h1>{count}</h1>
+      <p>Status: {isRunnign ? "Running" : "Stopped"}</p>
+    </div>
   )
 
 }
