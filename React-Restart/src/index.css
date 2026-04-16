@@ -34,3 +34,15 @@
     padding:10px;
     border: 1px solid black;
 } */
+
+.btn {
+    background-color: aqua;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.avater{
+    border-radius: 50%;
+    padding: 20px;
+   
+}

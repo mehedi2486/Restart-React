@@ -1,23 +1,23 @@
-import React from 'react';
 
-const ItemList = ({ items }) => {
-    return (
-        <ul>
-            {items.map(item => (
-                <li key={item.id}>{item.name}</li>
-            ))}
-        </ul>
-    );
-};
 
-const App = () => {
-    const items = [
-        { id: 1, name: 'Item 1' },
-        { id: 2, name: 'Item 2' },
-        { id: 3, name: 'Item 3' },
+function App() {
+    const products = [
+        { id: 1, title: 'Shoes', price: 29.99 },
+        { id: 2, title: 'Hat', price: 14.99 },
+        { id: 3, title: 'Bag', price: 49.99 },
     ];
 
-    return <ItemList items={items} />;
-};
+    return (
+        <div>
+            {products.map((product) => (
+                <div key={product.id}>
+                    <h2>{product.title}</h2>
+                    <p>${product.price}</p>
+                    <button>Add to Cart</button>
+                </div>
+            ))}
+        </div>
+    );
+}
 
 export default App;
