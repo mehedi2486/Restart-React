@@ -1,42 +1,33 @@
-import { useState } from 'react';
+//searchable product data table
 
-function Square({ value, onSquareClick }) {
-  return <button className="square" onClick={onSquareClick}>{value}</button>;
+
+function ProductCategoryRow({category}){
+    return(
+        <tr>
+            <td colSpan="2">
+                {category}
+            </td>
+        </tr>
+    )
+
 }
 
-export default function Board() {
-  const [squares, setSquares] = useState(Array(9).fill(null));
+function ProductRow({product}){
+    const name = product.stocked ? product.name :
+    <span style={{color:"red"}}>
+        {product.name}
+    </span>
 
-  function haldleClick(){
-    const nextSquares = squares.slice;
-    nextSquares[0] = "X";
-    setSquares(nextSquares);
-  }
+    return (
+        <tr>
+            <td>{name}</td>
+            <td>{product.price}</td>
+        </tr>
+    )
 
 
-
-
-  return (
-    <>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={haldleClick}/>
-        <Square value={squares[1]} />
-        <Square value={squares[2]} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} />
-        <Square value={squares[4]} />
-        <Square value={squares[5]} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} />
-        <Square value={squares[7]} />
-        <Square value={squares[8]} />
-      </div>
-    </>
-  );
 }
 
 
 
-// 
+
