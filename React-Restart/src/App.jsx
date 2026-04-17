@@ -1,23 +1,42 @@
+import { useState } from 'react';
 
-
-function App() {
-    const products = [
-        { id: 1, title: 'Shoes', price: 29.99 },
-        { id: 2, title: 'Hat', price: 14.99 },
-        { id: 3, title: 'Bag', price: 49.99 },
-    ];
-
-    return (
-        <div>
-            {products.map((product) => (
-                <div key={product.id}>
-                    <h2>{product.title}</h2>
-                    <p>${product.price}</p>
-                    <button>Add to Cart</button>
-                </div>
-            ))}
-        </div>
-    );
+function Square({ value, onSquareClick }) {
+  return <button className="square" onClick={onSquareClick}>{value}</button>;
 }
 
-export default App;
+export default function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function haldleClick(){
+    const nextSquares = squares.slice;
+    nextSquares[0] = "X";
+    setSquares(nextSquares);
+  }
+
+
+
+
+  return (
+    <>
+      <div className="board-row">
+        <Square value={squares[0]} onSquareClick={haldleClick}/>
+        <Square value={squares[1]} />
+        <Square value={squares[2]} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} />
+        <Square value={squares[4]} />
+        <Square value={squares[5]} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} />
+        <Square value={squares[7]} />
+        <Square value={squares[8]} />
+      </div>
+    </>
+  );
+}
+
+
+
+// 
